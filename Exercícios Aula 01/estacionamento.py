@@ -1,44 +1,68 @@
 class Carro:
   def __init__(self, placa):
     self.placa = placa
-    self.estacionado = False
+    self._estacionado = False
   
+  @property
+  def estacionado(self):
+    return self._estacionado
+
+  @estacionado.setter
+  def estacionado(self, valor):
+    self._estacionado = valor
+
   def estacionar(self):
-    if self.estacionado == True: return
-    self.estacionado = True
+    if self._estacionado == True: return
+    self._estacionado = True
   
   def sair_da_vaga(self):
-    if self.estacionado == False: return
-    self.estacionado = False
+    if self._estacionado == False: return
+    self._estacionado = False
 
 class Moto:
   def __init__(self, placa):
     self.placa = placa
-    self.estacionado = False
+    self._estacionado = False
   
+  @property
+  def estacionado(self):
+    return self._estacionado
+
+  @estacionado.setter
+  def estacionado(self, valor):
+    self._estacionado = valor
+
   def estacionar(self):
-    if self.estacionado == True: return
-    self.estacionado = True
+    if self._estacionado == True: return
+    self._estacionado = True
   
   def sair_da_vaga(self):
-    if self.estacionado == False: return
-    self.estacionado = False
+    if self._estacionado == False: return
+    self._estacionado = False
 
 class Vaga:
   def __init__(self, id, tipo):
     self.id = id
     self.tipo = tipo
-    self.livre = True
+    self._livre = True
     self.placa = "0000"
+  
+  @property
+  def livre(self):
+    return self._livre
+
+  @livre.setter
+  def livre(self, valor):
+    self._livre = valor
 
   def ocupar(self, veiculo):
-    if self.livre == False: return
-    self.livre = False
+    if self._livre == False: return
+    self._livre = False
     self.placa = veiculo.placa
   
   def desocupar(self):
-    if self.livre == True: return
-    self.livre = True
+    if self._livre == True: return
+    self._livre = True
     self.placa = "0000"
 
 class Estacionamento:
@@ -78,9 +102,8 @@ class Estacionamento:
     vaga.desocupar()
     self.total_vagas_livres_moto += 1
   
-  def __str__(self):
+  def __str__(self) -> str:
     return f'Total de vagas: 50\nVagas de Carro: {self.vagas_de_carro}\nVagas de Moto: {self.vagas_de_moto}\nVagas livres de carro: {self.total_vagas_livres_carro}\nVagas livres de moto: {self.total_vagas_livres_moto}\nCarros aguardando vaga: {self.carro_para_vaga}\nMotos aguardando vaga: {self.moto_para_vaga}\n'
-
 
 # Testando
 
